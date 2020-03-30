@@ -6,5 +6,5 @@ pydevd-pycharm~=193.6494.30
 toolz
 attrs
 djangorestframework-simplejwt==4.4.0
-mozilla-django-oidc
+git+git://github.com/saundersmatt/mozilla-django-oidc@client_authentication
 django-cors-headers==3.2.1

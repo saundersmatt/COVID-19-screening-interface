@@ -143,18 +143,51 @@ EHRBASE_CONNECTION_PARAMS = dict(
 
 AUTHENTICATION_BACKENDS = (
     'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 OIDC_RP_CLIENT_ID = os.environ['OIDC_RP_CLIENT_ID']
 OIDC_RP_CLIENT_SECRET = os.environ['OIDC_RP_CLIENT_SECRET']
 OIDC_RP_SIGN_ALGO = os.environ['OIDC_RP_SIGN_ALGO']
-OIDC_RP_IDP_SIGN_KEY = os.environ['OIDC_RP_IDP_SIGN_KEY']
+OIDC_OP_JWKS_ENDPOINT = os.environ['OIDC_OP_JWKS_ENDPOINT']
 OIDC_OP_AUTHORIZATION_ENDPOINT = os.environ['OIDC_OP_AUTHORIZATION_ENDPOINT']
 OIDC_OP_TOKEN_ENDPOINT = os.environ['OIDC_OP_TOKEN_ENDPOINT']
 OIDC_OP_USER_ENDPOINT = os.environ['OIDC_OP_USER_ENDPOINT']
+
+OIDC_CLIENT_ASSERTION = os.environ['OIDC_OP_USER_ENDPOINT']
+OIDC_CLIENT_ASSERTION_SIGN_ALGO = os.environ['OIDC_CLIENT_ASSERTION_SIGN_ALGO']
+OIDC_CLIENT_ASSERTION_SIGN_KEY = b'-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDvw99j9kTqx8VX\nAt5ajnMMJhZ6GLGTQwZbqSfa7SFYOjz8y/lT0UYL9X6oPOccQDl26tnblcdXnlYX\nKN5C2SSFfeLk4H+VJxMWJnRMhTYBXMyIqtfzhCYtNyDaYzIHt5vJTE+3/KAOQ75J\nR0JDrEC811VTUd8YZYazXL5i8f8gzjOjW167aavCLjT+DAl2G7Fs0RKFyjfjS4Yj\nSv8dFgenMtvwpv9hylgbHCvIGy69GDNBZbFgi+O4wrXhZVx24seMQBF9EpLt50km\nrOMRF4y9jsbt73XwG3UeqZF0fcAm+MPzE5iT98PNiXLObDWLraVmqDdzQffqQEh8\ngwPXRMmxAgMBAAECggEAaAVx2LuSgM21Bx/+eglNTpsDq2slN3+ftYq4+NliWxXB\nOegAvuWPX0bd8X2iwvX2OGqBpCviNVhDf37ClvwARU4tbyEbGQm/1R9P25b7rDGn\npy9/y22s5ncBcN4SaZi2JOpPt8IJasbnOoGI9TU5TPSbVy+w+7Oocg6tpt3Y01Dr\nr+awVTW7jhtdf/nNIIqtFyfGunO7wjdmMqeUAFFW4hbX4Y/Ngjoijf4VU3Prfou7\nThgx7I2c5KX1UnQWwjBuUMtSdSxPr0X709HWNxoPvOpMw7aR1nQ4SE+K4r5VTqGW\nTGtDksToSdyeMR3/D2QCK3IAsGsWffbjKi890fakQQKBgQD/pnu+Yoyk68SY4JgZ\nguflZQI2a/nFZ9tCN/Nl8+KkD7knhiAwOt5n5CZgg8zINKhC/rDUiSu7K5t3TlTl\nTk7SpOPPDcZ6K1xorrdmGc0q3+GFVZiriGqBbmPvwvHZBvMYlbMP86eGcZsvNnmG\nvdvqDvb8OnlrMkY2esx9ejRgGQKBgQDwF9O2Y48hJce6bVt5OaOyhAg/+djkBLA2\n3RLOAQ882GKOhCdcdGIMwUk6S29WFELwk8eUvhj9YGy1KFBMmtmofOw+QKtpDImI\nzVWVYBcZXnSLmIHQYhvDpkL0rWchr1oNTlzsXjj2/SaCWeb+mX+kBzB6c1FlhDPd\nCajW3PKJWQKBgQDgJaM3gQaZjxI3jCwvqgQSsCZpevBq8a1feNkSmewsNpD7o3DT\neLoJ0xMG6miBXRHuc4qtPnu2RvyvdWGgD7GypNoMb6KG+T+zlQS+I38syVDda/hI\n5XmkdBpxXLZZt+sqsg5mvRY0HaWXlqakyhBoPqi067wLje/b0n06wwvq+QKBgGmU\n0NFgLs0Q5Cgjdxp0MnyKe2ZG5Q5A0Y0O4voclSrYrV6m1vhdZdDeHum3ypo8BsPs\n+NN8VVj3UlbIB6foYNcrOGiX38kubjzurzglLYNGelH5Gv0cZ8E+GCupJbU2e49m\nao63UK2s3YZtKpvDvNHRJ4xxsdXGsVf+q3TxbObhAoGBAPPvzxA/a+1qk0rTVp2/\nSmXUWLLfBmsLveIYdfYfiMZ0Unz1FetZkoIQiDPc5faKJt7A666jq/l64uSqG3JE\n6RYz/ovckcAGS6j1tt77s1XuFa3JIT9ytGWJkviqtOwVZqv32EW55rC/9WGz5T+B\n40oGLuWNcopp6JWGCY+LgsGa\n-----END PRIVATE KEY-----\n'
+
+OIDC_RP_SCOPES = os.environ['OIDC_RP_SCOPES']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 CORS_ORIGIN_WHITELIST = tuple(
     os.environ['C19_BACKEND_CORS_ORIGIN_WHITELIST'].split('|'))
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+    'loggers': {
+        # 'django': {
+        #     'handlers': ['console'],
+        #     'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        #     'propagate': False,
+        # },
+        'mozilla_django_oidc': {
+            'handlers': ['console'],
+            'level': 'DEBUG'
+        },
+    },
+}

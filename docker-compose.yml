@@ -11,18 +11,23 @@ services:
       OIDC_RP_CLIENT_ID: ${OIDC_RP_CLIENT_ID}
       OIDC_RP_CLIENT_SECRET: ${OIDC_RP_CLIENT_SECRET}
       OIDC_RP_SIGN_ALGO: ${OIDC_RP_SIGN_ALGO}
-      OIDC_RP_IDP_SIGN_KEY: ${OIDC_RP_IDP_SIGN_KEY}
+      OIDC_OP_JWKS_ENDPOINT: ${OIDC_OP_JWKS_ENDPOINT}
       OIDC_OP_AUTHORIZATION_ENDPOINT: ${OIDC_OP_AUTHORIZATION_ENDPOINT}
       OIDC_OP_TOKEN_ENDPOINT: ${OIDC_OP_TOKEN_ENDPOINT}
       OIDC_OP_USER_ENDPOINT: ${OIDC_OP_USER_ENDPOINT}
+      OIDC_CLIENT_ASSERTION: ${OIDC_CLIENT_ASSERTION}
+      OIDC_CLIENT_ASSERTION_SIGN_ALGO: ${OIDC_CLIENT_ASSERTION_SIGN_ALGO}
+      OIDC_CLIENT_ASSERTION_SIGN_KEY: ${OIDC_CLIENT_ASSERTION_SIGN_KEY}
+      OIDC_RP_SCOPES: ${OIDC_RP_SCOPES}
       C19_BACKEND_EHRBASE_URL: http://ehrbase:8080
       C19_BACKEND_CORS_ORIGIN_WHITELIST: ${C19_BACKEND_CORS_ORIGIN_WHITELIST}
     volumes:
       - ./c19-backend:/app
+    #  - ../mozilla-me/mozilla_django_oidc:/usr/local/lib/python3.8/site-packages/mozilla_django_oidc
     ports:
       - ${C19_BACKEND_PORT}:8000
     depends_on:
-      - django_postgres
+     - django_postgres
     networks:
       - django_net
       - ehrbase_net

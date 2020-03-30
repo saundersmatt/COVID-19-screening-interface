@@ -20,12 +20,17 @@ SYSTEM_NAME=local.ehrbase.org
 C19_BACKEND_PORT=8000
 EHRBASE_PORT=8001
 
-OIDC_RP_CLIENT_ID=1
+OIDC_RP_CLIENT_ID=832a7164-93f7-4f23-9c77-4a2205227fab
 OIDC_RP_CLIENT_SECRET=bd01adf93cfb
-OIDC_RP_SIGN_ALGO=HS256
-OIDC_RP_IDP_SIGN_KEY=None
-OIDC_OP_AUTHORIZATION_ENDPOINT=http://testprovider:8080/openid/authorize
-OIDC_OP_TOKEN_ENDPOINT=http://testprovider:8080/openid/token
-OIDC_OP_USER_ENDPOINT=http://testprovider:8080/openid/userinfo
+OIDC_RP_SIGN_ALGO=RS512
+OIDC_OP_JWKS_ENDPOINT=https://stub.signin.nhs.uk/.well-known/jwks.json
+OIDC_OP_AUTHORIZATION_ENDPOINT=https://stub.signin.nhs.uk/authorize
+OIDC_OP_TOKEN_ENDPOINT=https://stub.signin.nhs.uk/token
+OIDC_OP_USER_ENDPOINT=https://stub.signin.nhs.uk/userinfo
+OIDC_CLIENT_ASSERTION=True
+OIDC_CLIENT_ASSERTION_SIGN_ALGO=RS512
+OIDC_CLIENT_ASSERTION_SIGN_KEY=None
+OIDC_RP_SCOPES=openid profile email phone gp_registration_details profile_extended gp_integration_credentials client_metadata delegated_access
+
 
 TESTPROVIDER_PORT=8080
